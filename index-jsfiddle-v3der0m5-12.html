@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bettega 貝堤加賽道俱樂部 | 官方網站</title>
+
+  <style>
+    body { background-color: #050505; color: #FFFFFF; overflow-x: hidden; width: 100%; }
+        /* 全域電影感雜訊 */
+        .noise::before {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.04; pointer-events: none; z-index: 9999;
+        }
+        .martini-stripes { height: 6px; width: 100%; display: flex; }
+        .m-lb { background: #6EC1E4; flex: 1; }
+        .m-db { background: #00205B; flex: 1; }
+        .m-rd { background: #E10600; flex: 1; }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .racing-font { font-family: 'Syncopate', sans-serif; }
+        .hero-mask { background: linear-gradient(to bottom, rgba(5,5,5,0.1) 0%, rgba(5,5,5,1) 90%); }
+        .reveal-text { opacity: 0; transform: translateY(30px); }
+        
+        /* 統一按鈕尺寸 */
+        .btn-uniform { 
+            width: 100%; max-width: 240px; height: 60px; 
+            display: flex; align-items: center; justify-content: center; 
+        }
+
+        /* 賽道文化底部裝飾條 */
+        .card-border-blue { border-bottom: 4px solid #6EC1E4; }
+        .card-border-red { border-bottom: 4px solid #E10600; }
+        .card-border-dark { border-bottom: 4px solid #00205B; }
+  </style>
+
+  
+</head>
+<body>
+  <!-- 技術棧：Tailwind CSS, GSAP, ScrollTrigger, Iconify -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- 頂部導覽列 -->
+    <nav class="fixed top-0 w-full z-[100] glass-card border-none">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 h-20 grid grid-cols-3 items-center">
+            <!-- Left: Logo -->
+            <div class="flex items-center gap-2">
+                <div class="flex flex-col">
+                    <span class="font-racing text-2xl lg:text-3xl font-black italic tracking-[0.05em] leading-none">BETTEGA</span>
+                    <span class="text-[12px] text-brandRed tracking-[0.3em] uppercase italic leading-none mt-1">Race Club</span>
+                </div>
+            </div>
+
+            <!-- Right: CTA -->
+            <div class="flex justify-end items-center gap-6 md:gap-10 col-span-2">
+                <a href="https://www.facebook.com/profile.php?id=61570917826968" target="_blank" class="text-xl md:text-2xl text-white hover:text-brandBlue transition-all">
+                    <span class="iconify" data-icon="ri:facebook-box-fill"></span>
+                </a>
+                <a href="https://www.instagram.com/bettega_raceclub" target="_blank" class="text-xl md:text-2xl text-white hover:text-brandRed transition-all">
+                    <span class="iconify" data-icon="ri:instagram-fill"></span>
+                </a>
+                <a href="https://forms.gle/zhPPJUeD6RuiUP7T9" target="_blank" class="bg-brandRed hover:bg-red-700 text-white px-5 md:px-6 py-2 text-[11px] font-black tracking-[0.2em] uppercase transition-all transform hover:skew-x-[-10deg]">
+                立即報名
+                </a>
+
+</div>
+        </div>
+        <div class="martini-stripes">
+            <div class="m-lb"></div><div class="m-db"></div><div class="m-rd"></div><div class="m-db"></div><div class="m-lb"></div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <div class="absolute inset-0 z-0">
+            <img src="https://live.staticflickr.com/65535/55150724754_ba2cd38392_b.jpg" 
+                 class="w-full h-full object-cover scale-110" id="hero-bg" alt="Hero">
+            <div class="absolute inset-0 hero-mask bg-opacity-10"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-8">
+            <h1 id="hero-title" class="reveal-text text-5xl md:text-9xl font-black uppercase racing-font leading-none mb-2 text-center">
+            <span class="tracking-[0.06em] block font-bold">Bettega</span>
+            <span class="text-brandRed tracking-[0.10em] text-4xl md:text-7xl block font-bold">Race Club</span>
+            </h1>
+            <p id="hero-desc" class="reveal-text text-base md:text-2xl font-normal text-gray-300 tracking-[0.3em] mb-12 max-w-2xl mx-auto italic">
+                在安全且專業的環境中體驗真正的賽道駕駛文化
+            </p>
+            <div id="hero-btns" class="reveal-text flex flex-col md:flex-row items-center justify-center gap-4">
+                <a href="https://forms.gle/zhPPJUeD6RuiUP7T9" target="_blank" 
+                 class="btn-uniform bg-white text-brandRed font-black uppercase tracking-widest hover:bg-brandLightBlue transition-all text-lg">
+                立即報名
+                </a>
+                <a href="https://www.youtube.com/watch?v=NSvtEVjzNFI" target="_blank" 
+                class="btn-uniform border border-white/20 glass-card font-black uppercase tracking-widest flex items-center gap-3 group transition-all text-lg">
+                <span class="iconify text-xl group-hover:text-brandRed" data-icon="ri:play-fill"></span>
+                觀看影片
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 關於 Bettega -->
+    <section id="about" class="py-24 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal-up">
+                    <h2 class="text-brandRed font-black tracking-widest uppercase mb-2 italic">ABOUT</h2>
+                    <h3 class="text-4xl md:text-5xl font-black mb-10 leading-tight italic"><br>貝堤加賽道俱樂部</h3>
+                    <div class="space-y-6 text-gray-400 text-lg leading-relaxed">
+                        <p>貝堤加賽道俱樂部成立於 2022 年，舉辦了無數場成功的賽道活動，累積了豐富的經驗。我們不只是活動執行者，更是一群熱愛賽道的車友，深知每位參與者對於駕駛體驗的期待。</p>
+                        <p>相信透過賽道日活動，讓參與者能夠合法、安全地體驗車輛性能，享受賽道文化。參加活動的成員包含 <span class="text-white underline decoration-brandBlue">性能車車主</span>、<span class="text-white underline decoration-brandBlue">賽道愛好者</span> 及 <span class="text-white underline decoration-brandBlue">專業車手</span>。</p>
+                    </div>
+                </div>
+                <div class="reveal-up delay-200 relative">
+                    <img src="https://live.staticflickr.com/65535/55143449058_dbcb5beeba_b.jpg"
+                    class="rounded shadow-2xl transition-all duration-1000 hover:scale-[1.02]"
+                    alt="Track Car">
+                    <div class="absolute -top-6 -right-6 w-32 h-32 border-t border-r border-white/10"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 賽道文化 -->
+    <section class="py-24 bg-zinc-950 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="reveal-up mb-20">
+                <h2 class="text-4xl md:text-7xl font-black italic tracking-tighter uppercase mb-6 leading-none">
+                    賽道不只是速度<br>
+                    <span class="text-brandBlue">更是一種駕駛文化</span>
+                </h2>
+                <p class="text-gray-500 tracking-widest text-sm md:text-lg italic">每一位駕駛都尊重賽道、尊重安全、尊重彼此。</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-12 flex flex-col items-center card-border-blue reveal-up">
+                    <span class="iconify text-7xl text-white mb-8" data-icon="ri:brain-line"></span>
+                    <h4 class="text-2xl font-black italic mb-4 uppercase">理性駕駛</h4>
+                    <p class="text-gray-400 text-sm">理解物理邊界，追求精準的路線而非盲目衝刺。</p>
+                </div>
+                <div class="glass-card p-12 flex flex-col items-center card-border-red reveal-up delay-100">
+                    <span class="iconify text-7xl text-white mb-8" data-icon="ri:shield-check-line"></span>
+                    <h4 class="text-2xl font-black italic mb-4 uppercase">安全駕駛</h4>
+                    <p class="text-gray-400 text-sm">將風險控制在可控範圍內，保障所有夥伴的安全。</p>
+                </div>
+                <div class="glass-card p-12 flex flex-col items-center card-border-dark reveal-up delay-200">
+                    <span class="iconify text-7xl text-white mb-8" data-icon="ri:heart-line"></span>
+                    <h4 class="text-2xl font-black italic mb-4 uppercase">享受駕駛</h4>
+                    <p class="text-gray-400 text-sm">感受純粹的機械反饋，沉浸在與車共鳴的瞬間。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 賽道日場地資訊 -->
+    <section id="events" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-20 text-center reveal-up">
+                <h2 class="text-5xl md:text-6xl font-black italic racing-font uppercase leading-tight">Track <span class="text-brandRed">Venues</span></h2>
+                <div class="h-1 w-20 bg-brandBlue mx-auto mt-4"></div>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="glass-card overflow-hidden reveal-up">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://live.staticflickr.com/65535/55144063927_70f7de5e63_b.jpg" class="w-full h-full object-cover object-[50%_80%] brightness-50" alt="週週跑-77">
+                        <div class="absolute bottom-6 left-6"><h4 class="text-3xl font-black italic racing-font">麗寶國際賽車場</h4>
+                        <p class="text-lg md:text-2xl font-bold text-gray-400 reveal-up italic leading-relaxed">Lihpao Racing International Circuit</p>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <ul class="space-y-4 text-sm text-gray-400 font-bold italic">
+                            <li>• 全長約 3.5 km，高低起伏明顯</li>
+                            <li>• 多連續技術彎，節奏感要求極高</li>
+                            <li>• 彎道半徑變化大，考驗控制精準度</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="glass-card overflow-hidden reveal-up delay-200">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://live.staticflickr.com/65535/55145128659_750bac217e_b.jpg" class="w-full h-full object-cover object-[50%_80%] brightness-50" alt="DSC00507">
+                        <div class="absolute bottom-6 left-6"><h4 class="text-3xl font-black italic racing-font">大鵬灣國際賽車場</h4>
+                         <p class="text-lg md:text-2xl font-bold text-gray-400 reveal-up italic leading-relaxed">PenBay International Circuit</p>
+                         </div>
+                    </div>
+                    <div class="p-8">
+                        <ul class="space-y-4 text-sm text-gray-400 font-bold italic">
+                            <li>• 最長直線約 1.2 km，適合測試極速</li>
+                            <li>• 路面寬度 20m，提供充足超車空間</li>
+                            <li>• 臨海環境，需注意高速區側風影響</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- 安全規範 -->
+    <section id="safety" class="py-24 bg-white text-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal-up">
+                <h2 class="text-5xl md:text-7xl font-black italic racing-font uppercase text-zinc-900 leading-none">Safety <span class="text-brandRed">Rules</span></h2>
+                <div class="h-1 w-20 bg-brandBlue mx-auto mt-6"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-5 gap-12 items-center">
+                <!-- 左側圖片欄位 (佔 2/5) -->
+                <div class="lg:col-span-2 reveal-up">
+                    <div class="relative group">
+                        <img src="https://live.staticflickr.com/65535/55149488797_56db2e983e_b.jpg"
+                        class="rounded-lg shadow-2xl object-cover object-[80%_center] md:object-center w-full h-[500px]">
+                        <!-- 裝飾邊框 -->
+                        <div class="absolute -bottom-4 -left-4 w-24 h-24 border-b-4 border-l-4 border-brandRed -z-10"></div>
+                        <div class="absolute -top-4 -right-4 w-24 h-24 border-t-4 border-r-4 border-brandBlue -z-10"></div>
+                    </div>
+                </div>
+
+                <!-- 右側規則欄位 (佔 3/5) -->
+                <div class="lg:col-span-3 grid sm:grid-cols-2 gap-x-12 gap-y-12">
+                    <div class="reveal-up">
+                        <h4 class="text-lg font-black italic border-b-2 border-brandBlue pb-1 mb-4">參加資格</h4>
+                        <ul class="text-xs text-gray-600 space-y-3 font-bold italic leading-loose">
+                            <li>• 每車上限 2 人 (副駕需滿 15 歲)</li>
+                            <li>• 持中華民國或認可之國際駕照</li>
+                            <li>• 嚴禁中途更換駕駛</li>
+                        </ul>
+                    </div>
+                    <div class="reveal-up delay-100">
+                        <h4 class="text-lg font-black italic border-b-2 border-brandBlue pb-1 mb-4">安全裝備</h4>
+                        <ul class="text-xs text-gray-600 space-y-3 font-bold italic leading-loose">
+                            <li>• CNS 認證 全罩/3-4 安全帽</li>
+                            <li>• 必須穿著 長褲 及 運動鞋</li>
+                            <li>• 禁止皮鞋、涼鞋、高跟鞋</li>
+                        </ul>
+                    </div>
+                    <div class="reveal-up delay-200">
+                        <h4 class="text-lg font-black italic border-b-2 border-brandRed pb-1 mb-4">賽道規則</h4>
+                        <ul class="text-xs text-gray-600 space-y-3 font-bold italic leading-loose">
+                            <li>• 讓車打雙黃燈 並鬆油門</li>
+                            <li>• 不急煞、不變線、保原線</li>
+                            <li>• 禁止彎中超車 或 遲煞搶線</li>
+                        </ul>
+                    </div>
+                    <div class="reveal-up delay-300">
+                        <h4 class="text-lg font-black italic border-b-2 border-brandRed pb-1 mb-4">車輛規範</h4>
+                        <ul class="text-xs text-gray-600 space-y-3 font-bold italic leading-loose">
+                            <li>• 麗寶噪音：102.9 dB(A)</li>
+                            <li>• 大鵬灣噪音：105.9 dB(A)</li>
+                            <li>• 車輛安全與外觀檢測</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 精彩花絮 -->
+    <section class="py-24 bg-black">
+        <div class="max-w-7xl mx-auto px-6 mb-16 flex flex-col md:flex-row justify-between items-end gap-6">
+            <div>
+                <h2 class="text-4xl font-black italic racing-font uppercase">Track <span class="text-brandRed">Gallery</span></h2>
+                <div class="h-[1px] w-24 bg-brandBlue mt-4"></div>
+            </div>
+            <p class="text-gray-500 text-[10px] tracking-[0.5em] uppercase font-black italic">精彩花絮回顧 / PRECISION MOMENTS</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-7xl mx-auto px-4">
+            <div class="reveal-up aspect-video overflow-hidden rounded-sm group">
+                <img src="https://live.staticflickr.com/65535/55079650939_9059045173_h.jpg" class="w-full h-full object-cover object-[50%_95%] group-hover:scale-110 transition-all duration-700 brightness-90 group-hover:brightness-110">
+            </div>
+            <div class="reveal-up delay-75 aspect-video overflow-hidden rounded-sm group">
+                <img src="https://live.staticflickr.com/65535/54978472472_cea6a4f24a_h.jpg" class="w-full h-full object-cover object-[50%_95%] group-hover:scale-110 transition-all duration-700 brightness-90 group-hover:brightness-110">
+            </div>
+            <div class="reveal-up delay-150 aspect-video overflow-hidden rounded-sm group">
+                <img src="https://live.staticflickr.com/65535/55144858576_1568458dd1_b.jpg" class="w-full h-full object-cover object-[50%_95%] group-hover:scale-110 transition-all duration-700 brightness-90 group-hover:brightness-110">
+            </div>
+            <div class="reveal-up aspect-video overflow-hidden rounded-sm group">
+                <img src="https://live.staticflickr.com/65535/55150694720_d6831c22ab_b.jpg" class="w-full h-full object-cover object-[50%_95%] group-hover:scale-110 transition-all duration-700 brightness-90 group-hover:brightness-110">
+            </div>
+            <div class="reveal-up delay-75 aspect-video overflow-hidden rounded-sm group">
+                <img src="https://live.staticflickr.com/65535/55149239342_9357ae868e_b.jpg" class="w-full h-full object-cover object-[50%_10%] group-hover:scale-110 transition-all duration-700 brightness-90 group-hover:brightness-110">
+            </div>
+            <div class="reveal-up delay-150 aspect-video overflow-hidden rounded-sm group">
+                <img src="https://live.staticflickr.com/65535/54979653565_ce9752474c_h.jpg" class="w-full h-full object-cover object-[50%_95%] group-hover:scale-110 transition-all duration-700 brightness-90 group-hover:brightness-110">
+            </div>
+        </div>
+    </section>
+
+    <!-- WE CAN DO IT (新增區塊) -->
+    <section id="we-can-do-it" class="py-24 bg-zinc-950 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6 mb-16 text-center">
+            <h2 class="text-5xl md:text-7xl font-black italic racing-font uppercase reveal-up">WE CAN <span class="text-brandBlue">DO IT</span></h2>
+            <p class="text-gray-400 mt-6 tracking-[0.3em] font-bold italic reveal-up">超越自我，我們與你同行</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-7xl mx-auto px-6">
+            <!-- 項目 1 -->
+            <div class="reveal-up">
+                <div class="aspect-[4/3] overflow-hidden rounded-sm group relative">
+                    <img src="https://live.staticflickr.com/65535/55079591818_682868fa1d_h.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                </div>
+                <p class="mt-4 text-gray-300 font-bold italic text-sm border-l-2 border-brandBlue pl-3">專屬品牌賽道日與試乘車體驗活動。</p>
+            </div>
+            <!-- 項目 2 -->
+            <div class="reveal-up delay-75">
+                <div class="aspect-[4/3] overflow-hidden rounded-sm group relative">
+                    <img src="https://live.staticflickr.com/65535/55150365364_8cb65b15a0_b.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                </div>
+                <p class="mt-4 text-gray-300 font-bold italic text-sm border-l-2 border-brandRed pl-3">隨時紀錄活動精彩的瞬間。</p>
+            </div>
+            <!-- 項目 3 -->
+            <div class="reveal-up delay-150">
+                <div class="aspect-[4/3] overflow-hidden rounded-sm group relative">
+                    <img src="https://live.staticflickr.com/65535/54978474417_c47a8d8a6c_h.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                </div>
+                <p class="mt-4 text-gray-300 font-bold italic text-sm border-l-2 border-brandBlue pl-3">專屬品牌攤位曝光產品價值。</p>
+            </div>
+            <!-- 項目 4 -->
+            <div class="reveal-up">
+                <div class="aspect-[4/3] overflow-hidden rounded-sm group relative">
+                    <img src="https://live.staticflickr.com/65535/55149363267_e58a90dc53_b.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                </div>
+                <p class="mt-4 text-gray-300 font-bold italic text-sm border-l-2 border-brandRed pl-3">傳統媒體報導增加曝光度。</p>
+            </div>
+            <!-- 項目 5 -->
+            <div class="reveal-up delay-75">
+                <div class="aspect-[4/3] overflow-hidden rounded-sm group relative">
+                    <img src="https://live.staticflickr.com/65535/55150220006_2e321115ee_b.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                </div>
+                <p class="mt-4 text-gray-300 font-bold italic text-sm border-l-2 border-brandBlue pl-3">公司行號安全講習活動，帶領初學者體驗賽道文化。</p>
+            </div>
+            <!-- 項目 6 -->
+            <div class="reveal-up delay-150">
+                <div class="aspect-[4/3] overflow-hidden rounded-sm group relative">
+                    <img src="https://live.staticflickr.com/65535/55150388808_d2502a290d_b.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                </div>
+                <p class="mt-4 text-gray-300 font-bold italic text-sm border-l-2 border-brandRed pl-3">VIP專屬包場活動，餐廳外燴精緻餐點。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 報名 CTA -->
+    <section id="register" class="py-32 bg-zinc-900 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-6xl font-black italic racing-font text-white mb-10 reveal-up">READY TO RACE?</h2>
+            <div class="mb-16">
+                <p class="text-xl md:text-3xl font-black text-brandLightBlue mb-4 italic reveal-up">準備好挑戰極限？</p>
+                <p class="text-lg md:text-2xl font-bold text-gray-400 reveal-up italic leading-relaxed">加入 Bettega，與車友們一同開拓賽道旅程。</p>
+            </div>
+            <div class="flex flex-col items-center gap-10 reveal-up">
+                <a href="https://forms.gle/zhPPJUeD6RuiUP7T9" target="_blank" class="inline-block px-12 py-6 bg-brandRed text-white font-black text-2xl italic   racing-font tracking-widest hover:bg-white hover:text-brandRed transition-all transform hover:scale-105 shadow-2xl">
+                    立即報名
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5 text-center bg-black">
+        <div class="martini-stripes mb-12">
+            <div class="m-lb"></div><div class="m-db"></div><div class="m-rd"></div><div class="m-db"></div><div class="m-lb"></div>
+        </div>
+        <div class="flex flex-col items-center gap-3">
+            <span class="text-2xl font-black italic racing-font tracking-tighter uppercase leading-none">Bettega</span>
+            <p class="text-gray-600 text-[10px] tracking-[0.5em] uppercase font-bold italic leading-none mt-1">Taiwan Track Driving Club</p>
+            <p class="text-gray-700 text-[9px] uppercase tracking-widest mt-6 italic">Copyright &copy; 2022-2026 Bettega. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+  <script>
+    tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandDarkBlue: '#00205B',
+                        brandBlue: '#0067B1',
+                        brandLightBlue: '#6EC1E4',
+                        brandRed: '#E10600',
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'sans-serif'],
+                        display: ['Syncopate', 'sans-serif'],
+                    }
+                }
+            }
+        }
+
+    gsap.registerPlugin(ScrollTrigger);
+        window.addEventListener('load', () => {
+            const heroTl = gsap.timeline();
+            heroTl.to("#hero-bg", { scale: 1, duration: 2, ease: "power2.out" })
+                  .to("#hero-title", { opacity: 1, y: 0, duration: 1, ease: "back.out(1.5)" }, "-=1")
+                  .to("#hero-desc", { opacity: 1, y: 0, duration: 1 }, "-=0.8")
+                  .to("#hero-btns", { opacity: 1, y: 0, duration: 1 }, "-=0.6");
+
+            gsap.utils.toArray('.reveal-up').forEach((el) => {
+                gsap.from(el, {
+                    scrollTrigger: { trigger: el, start: "top 95%", toggleActions: "play none none none" },
+                    y: 40, opacity: 0, duration: 1.2, ease: "power3.out"
+                });
+            });
+        });
+  </script>
+</body>
+</html>
